@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="HospitalMangagmentSystem">
+		<class>com.HospitalMangagmentSystem.demo.domain.Cites</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Address</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Countries</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Doctor</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.DoctorsVisit</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Helpscore</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Patients</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Patientstreatments</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Publicorprivateinsurance</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Refcalendar</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Refdiseases</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Refmedication</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Refsurgery</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Sideeffectscores</class>
+		<class>com.HospitalMangagmentSystem.demo.domain.Treatments</class>
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+	</persistence-unit>
+</persistence>
