@@ -24,7 +24,7 @@ public class Doctor implements Serializable {
 	private String doctor_Details;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="Work_Address_ID")
 	private Address address;
 

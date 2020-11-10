@@ -31,25 +31,25 @@ public class Patientstreatments implements Serializable {
       private Helpscore helpScore;
 
 	//bi-directional many-to-one association to Patient
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Patient_id")
 	//@JsonIgnore
 	private Patients patient;
 
 	//bi-directional many-to-one association to SideEffectScore
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Side_Effect_Score")
 	@JsonIgnore
 	private Sideeffectscores sideEffectScore;
 
 	//bi-directional many-to-one association to RefCalendar
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Treatment_Day_Date_Time")
 	 @JsonIgnore
 	private Refcalendar refCalendar;
 
 	//bi-directional many-to-one association to Treatment
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Treatment_id")
 	 @JsonIgnore
 	private Treatments treatment;

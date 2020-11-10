@@ -30,7 +30,7 @@ public class CityserviceImplementation implements CityService {
 		// TODO Auto-generated method stub
 		cit.setCiy_Code(cit.getCiy_Code());
 		cit.setCity_Name(cit.getCity_Name());
-		return cit;
+		return citrep.save(cit);
 	}
 
 	@Override

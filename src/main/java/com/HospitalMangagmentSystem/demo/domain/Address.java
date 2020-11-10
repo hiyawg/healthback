@@ -40,7 +40,7 @@ public class Address {
 	  private Countries countries;
 	
 	//bi-directional Many-to-one association to Country
-		@ManyToOne(fetch=FetchType.LAZY)
+		@ManyToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
 		 @JoinColumn(name="City_Code")
 	//@JsonIgnore
 		 private Cites city;

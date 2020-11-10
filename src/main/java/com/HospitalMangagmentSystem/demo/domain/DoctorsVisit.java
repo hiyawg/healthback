@@ -23,18 +23,18 @@ public class DoctorsVisit implements Serializable {
 	private String visit_Details;
 
 	//bi-directional many-to-one association to RefCalender
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="Day_Date_Time")
 	//@JsonManagedReference
 	private Refcalendar refCalender;
 
 	//bi-directional many-to-one association to Doctor
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
 	@JoinColumn(name="Doctor_ID")
 	private Doctor doctor;
 
 	//bi-directional many-to-one association to Patient
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="Patient_ID")
 	private Patients patient;
 

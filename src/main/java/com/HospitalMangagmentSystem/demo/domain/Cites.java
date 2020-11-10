@@ -25,7 +25,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 public class Cites {
     @Id
 	@Column(name="`City-Code`")
-   // @GeneratedValue
+    @GeneratedValue
 	private int Ciy_Code;
     
 	private String City_Name;

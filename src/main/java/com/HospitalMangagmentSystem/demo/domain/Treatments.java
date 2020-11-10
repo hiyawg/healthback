@@ -23,13 +23,13 @@ import java.util.Set;
 	    private String otherdetails;
 
 	    //bi-directional many-to-one association to Ref_Medications
-	    @ManyToOne
+	    @ManyToOne( cascade = CascadeType.ALL)
 	     @JoinColumn(name="medicationcode",referencedColumnName="medicationcode")
 	 //  @JsonManagedReference
 	    private Refmedication medication;
 
 	    //bi-directional many-to-one association to Ref_Surgery
-	    @ManyToOne
+	    @ManyToOne( cascade = CascadeType.ALL)
 	    @JoinColumn(name="Surgery_Code")
 	    private Refsurgery surgery;
         

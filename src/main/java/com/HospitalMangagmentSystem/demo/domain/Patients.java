@@ -1,7 +1,7 @@
 package com.HospitalMangagmentSystem.demo.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -15,10 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.datetime.standard.DateTimeContext;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -30,7 +33,10 @@ public class Patients {
 	@Id
 	@GeneratedValue
 	private int Patient_ID;
-	private int Date_Of_Birth;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
+    private Date Date_Of_Birth;
 	private String Other_Details;
 	
 	public String getOther_Details() {
@@ -64,7 +70,7 @@ public class Patients {
 	//@JsonManagedReference
 	private Publicorprivateinsurance Public_or_Private_Insurance_Code;
 
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="addres_id")
 	private Address address;
 	
@@ -80,12 +86,13 @@ public class Patients {
 		Patient_ID = patient_ID;
 	}
 
-	public int getDate_Of_Birth() {
+	
+
+	public Date getDate_Of_Birth() {
 		return Date_Of_Birth;
 	}
 
-	
-	public void setDate_Of_Birth(int date_Of_Birth) {
+	public void setDate_Of_Birth(Date date_Of_Birth) {
 		Date_Of_Birth = date_Of_Birth;
 	}
 
