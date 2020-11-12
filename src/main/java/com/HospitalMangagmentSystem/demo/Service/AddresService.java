@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.HospitalMangagmentSystem.demo.Dto.AddressDto;
 import com.HospitalMangagmentSystem.demo.domain.Address;
 
 
@@ -15,7 +16,7 @@ public interface AddresService {
    
    Address getoneAddreess(int id);
    
-   Address createAddress(Address add);
+   Address createAddress(AddressDto add);
    
    void deleteAddress(int id);
    

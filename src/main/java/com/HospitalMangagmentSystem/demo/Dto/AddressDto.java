@@ -2,10 +2,17 @@ package com.HospitalMangagmentSystem.demo.Dto;
 
 public class AddressDto {
 
-private String addressdetail;
+private String addressdetaildto;
+private String doctordetailsdto;
+
+
+public String getDoctordetails() {
+	return doctordetailsdto;
+}
+
 
 public String getaddressdetail() {
-	return addressdetail;
+	return addressdetaildto;
 }
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.HospitalMangagmentSystem.demo.Dto.DoctorDto;
 import com.HospitalMangagmentSystem.demo.domain.Doctor;
 
 
@@ -14,7 +15,7 @@ public interface DoctorService {
 	   
 	Doctor getonedoctor(int id);
 	   
-	Doctor createdoctor(Doctor doc);
+	Doctor adddoctor(DoctorDto doc);
 	   
 	   void deletedoctor(int id);
 	   

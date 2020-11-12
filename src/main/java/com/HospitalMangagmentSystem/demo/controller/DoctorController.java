@@ -32,10 +32,10 @@ public class DoctorController {
 		return this.docservice.getalldoctor();
 	}
 	
-	@PostMapping("/Doctor/")
+	@PostMapping("/Doctor")
 	@Transactional
-	public void createDoctor(@RequestBody Doctor doc) {
-		this.docservice.createdoctor(doc);
+	public void createDoctor(@RequestBody DoctorDto doc) {
+		this.docservice.adddoctor(doc);
 		
 	}
 	

@@ -3,11 +3,13 @@ package com.HospitalMangagmentSystem.demo.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,12 +21,12 @@ import java.util.Set;
 @Entity
 @Table(name="address")
 @NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
-public class Address {
+public class Address implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="address_id")
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int address_id;
 
 	
@@ -45,8 +47,10 @@ public class Address {
 	//@JsonIgnore
 		 private Cites city;
 		
-		@OneToMany(mappedBy="address", cascade = CascadeType.ALL)
-		private Set<Doctor> doctor;
+		@ManyToOne
+		 @JoinColumn(name="doctorid")
+		@JsonBackReference
+		private Doctor doctor;
 		
 		@OneToMany(mappedBy="address", cascade = CascadeType.ALL)
 		private Set<Patients> patient;
@@ -67,4 +71,53 @@ public class Address {
 	public String getAddress_detail() {
 		return this.address_detail;
 	}
+
+	public Countries getCountries() {
+		return countries;
+	}
+
+	public void setCountries(Countries countries) {
+		this.countries = countries;
+	}
+
+	public Cites getCity() {
+		return city;
+	}
+
+	public void setCity(Cites city) {
+		this.city = city;
+	}
+
+	
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+
+	
+
+	public Set<Patients> getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Set<Patients> patient) {
+		this.patient = patient;
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+

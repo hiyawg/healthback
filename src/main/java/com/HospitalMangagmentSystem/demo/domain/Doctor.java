@@ -3,6 +3,11 @@ package com.HospitalMangagmentSystem.demo.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,12 +29,15 @@ public class Doctor implements Serializable {
 	private String doctor_Details;
 
 	//bi-directional many-to-one association to Address
-	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="Work_Address_ID")
-	private Address address;
+	@OneToMany(mappedBy="doctor",  cascade = CascadeType.ALL)
+	//@JoinColumn(name="Work_Address_ID")
+	//@JsonManagedReference
+	@JsonIgnore
+	private Set<Address> address;
 
 	//bi-directional many-to-one association to DoctorsVisit
 	@OneToMany(mappedBy="doctor",  cascade = CascadeType.ALL)
+	
 	private Set<DoctorsVisit> doctorsVisits;
 
 	public Doctor() {
@@ -51,12 +59,23 @@ public class Doctor implements Serializable {
 		this.doctor_Details = doctor_Details;
 	}
 
-	public Address getAddress() {
-		return this.address;
+	
+	public Set<Address> getAddress() {
+		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(Set<Address> address) {
 		this.address = address;
+	}
+
+	public Address addAdreess(Address addres) {
+		if(addres == null) {
+			address = new HashSet<Address>();
+		}
+		getAddress().add(addres);
+		addres.setDoctor(this);
+		
+		return addres;
 	}
 
 	public Set<DoctorsVisit> getDoctorsVisits() {

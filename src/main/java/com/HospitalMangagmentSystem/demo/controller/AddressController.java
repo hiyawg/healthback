@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-
+import com.HospitalMangagmentSystem.demo.Dto.AddressDto;
 import com.HospitalMangagmentSystem.demo.Service.AddresService;
 import com.HospitalMangagmentSystem.demo.domain.Address;
 
@@ -42,9 +42,10 @@ public class AddressController {
 	 }
 	 @PostMapping("/Address/")
      @Transactional
-     public void createUserAddress( @RequestBody Address Add){
+     public void createUserAddress( @RequestBody AddressDto Add){
                             
           this.addservice.createAddress(Add);
+          
         
      }
 
