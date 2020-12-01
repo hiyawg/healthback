@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-
+import com.HospitalMangagmentSystem.demo.Dto.CityDto;
 import com.HospitalMangagmentSystem.demo.domain.Cites;
 
 @Service
@@ -13,11 +13,11 @@ public interface CityService {
 	   
 	Cites getonecity(int id);
 	   
-	Cites createcity(Cites cit);
+	Cites createcity(CityDto cit);
 	   
 	   void deletecity(int id);
 	   
-	   Cites ubdatecity(Cites cit , int id);
+	   Cites ubdatecity( CityDto citdt , int id);
 	}
 
 

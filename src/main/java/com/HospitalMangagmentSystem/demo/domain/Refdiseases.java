@@ -3,6 +3,7 @@ package com.HospitalMangagmentSystem.demo.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name="ref_diseases")
 @NamedQuery(name="RefDiseas.findAll", query="SELECT r FROM Refdiseases r")
-public class Refdiseases implements Serializable {
+public class Refdiseases extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,8 +28,9 @@ public class Refdiseases implements Serializable {
 	private String disease_Name;
 
 	//bi-directional many-to-one association to Patient
-	@OneToMany(mappedBy="Disease_Code", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="Disease", cascade = CascadeType.ALL)
 	@JsonIgnore
+	//@JsonBackReference 
 	private Set<Patients> patients;
 
 	public Refdiseases() {

@@ -5,6 +5,7 @@ import java.util.Date;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,8 @@ public class RefcalendarServiceImplementation implements RefcalandarService {
 	@Override
 	public Refcalendar getonecalendar(Date id) {
 		// TODO Auto-generated method stub
-		Refcalendar refcal=refcalrepo.findById(id).orElse(null);
+		Refcalendar refcal=refcalrepo.findById(id).orElseThrow(()->
+				new DataNotFoundException("calendar with id " + id + " not found") );
 		return refcal ;
 	}
 
@@ -46,7 +48,8 @@ public class RefcalendarServiceImplementation implements RefcalandarService {
 	@Override
 	public Refcalendar ubdatecalendar(Refcalendar refcal, Date id) {
 		// TODO Auto-generated method stub
-		refcal=refcalrepo.findById(id).orElse(null);
+		refcal=refcalrepo.findById(id).orElseThrow(()->
+				new DataNotFoundException("calendar with id " + id + " not found") );
 		refcal.setDay_Date_Time(refcal.getDay_Date_Time());
 		refcal.setDay_Number(refcal.getDay_Number());
 		return refcal;

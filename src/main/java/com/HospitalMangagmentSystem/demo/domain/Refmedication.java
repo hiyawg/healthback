@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="RefMedication")
 @NamedQuery(name="RefMedication.findAll", query="SELECT r FROM Refmedication r")
-public class Refmedication implements Serializable {
+public class Refmedication extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id

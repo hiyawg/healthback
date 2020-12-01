@@ -1,9 +1,11 @@
 package com.HospitalMangagmentSystem.demo.controller;
 
 	import org.springframework.web.bind.annotation.RestController;
-	import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.datetime.standard.DateTimeContext;
+import org.springframework.http.ResponseEntity;
 
 import com.HospitalMangagmentSystem.demo.repository.HelpscoreRepository;
 import com.HospitalMangagmentSystem.demo.repository.PatientRepository;
@@ -12,6 +14,7 @@ import com.HospitalMangagmentSystem.demo.repository.RefcalendarRepository;
 import com.HospitalMangagmentSystem.demo.repository.SideeffectRepository;
 import com.HospitalMangagmentSystem.demo.repository.TreatmentsRepository;
 
+import java.net.URI;
 import java.sql.Date;
 import java.util.List;
 
@@ -51,9 +54,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 	     @PostMapping("/PatientsTreatments/")
 	     @Transactional
-	    public void savePatientsTreatment(@RequestBody Patientstreatments pt ){
-	    	
-	         this.pattreatservice.createpatienttreat(pt);
+	    public ResponseEntity<Object> savePatientsTreatment(@RequestBody patienttreatmentDto pt ){
+	    	Patientstreatments ptreatsave=this.pattreatservice.createpatienttreat(pt);
+	    	URI location = ServletUriComponentsBuilder
+	                .fromCurrentRequest()
+	                .path("/{id}")
+	                .buildAndExpand(ptreatsave.getPatients_Treatments_id()).toUri();
+			return ResponseEntity.created(location).build();
+		
 	     }
 	     @GetMapping("/PatientsTreatments/{id}")
 	    public Patientstreatments getonePatientsTreatments(@PathVariable int id){
@@ -68,7 +76,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 	     @PutMapping("/PatientsTreatments/{id}")
 	     @Transactional
 	         public Patientstreatments updatPatientsTreatments(@PathVariable int id ,
-	        		 @RequestBody  Patientstreatments pt){
+	        		 @RequestBody  patienttreatmentDto pt){
 	    	
 	     
 	          return this.pattreatservice.ubdatepatienttreat(pt, id);

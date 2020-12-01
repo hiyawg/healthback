@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="`public_ or_ private_ insurance`")
 @NamedQuery(name="Public_or_private_insurance.findAll", query="SELECT p FROM Publicorprivateinsurance p")
-public class Publicorprivateinsurance implements Serializable {
+public class Publicorprivateinsurance extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id

@@ -1,21 +1,24 @@
 package com.HospitalMangagmentSystem.demo.controller;
 
 
-	import java.sql.Date;
+	import java.net.URI;
+import java.sql.Date;
 import java.util.List;
 
 	import javax.transaction.Transactional;
 
 	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 	import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 	import org.springframework.web.bind.annotation.PutMapping;
 	import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-	import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
+import com.HospitalMangagmentSystem.demo.Dto.PatientDto;
 import com.HospitalMangagmentSystem.demo.Service.PatientService;
 import com.HospitalMangagmentSystem.demo.domain.Address;
 import com.HospitalMangagmentSystem.demo.domain.Patients;
@@ -43,9 +46,13 @@ import com.HospitalMangagmentSystem.demo.repository.Refdiseasesrepository;
 		
 		@PostMapping("/Patient/")
 		@Transactional
-		public void createpatient(@RequestBody Patients pati) {
-				
-			this.patiservice.createpatient(pati);
+		public ResponseEntity<Object>  createpatient(@RequestBody PatientDto patidt) {
+				Patients patsave =this.patiservice.createpatient(patidt);
+				URI location = ServletUriComponentsBuilder
+		                .fromCurrentRequest()
+		                .path("/{id}")
+		                .buildAndExpand(patsave.getPatient_ID()).toUri();
+				return ResponseEntity.created(location).build();
 			
 			
 		}
@@ -68,7 +75,7 @@ import com.HospitalMangagmentSystem.demo.repository.Refdiseasesrepository;
 		
 		@PutMapping("/Patient/{id}")
 		@Transactional
-		public Patients updatepatient(@RequestBody Patients pati , @PathVariable int id) {
+		public Patients updatepatient(@RequestBody PatientDto pati , @PathVariable int id) {
 			return this.patiservice.ubdatepatient(pati, id);
 			
 			

@@ -15,7 +15,7 @@ public interface DoctorService {
 	   
 	Doctor getonedoctor(int id);
 	   
-	Doctor adddoctor(DoctorDto doc);
+	Doctor  createdoctor(DoctorDto doc);
 	   
 	   void deletedoctor(int id);
 	   

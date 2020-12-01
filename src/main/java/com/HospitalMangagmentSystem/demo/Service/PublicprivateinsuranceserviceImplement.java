@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,8 @@ public class PublicprivateinsuranceserviceImplement implements Publicprivateinsu
 	@Override
 	public Publicorprivateinsurance getoneinsurance(String id) {
 		// TODO Auto-generated method stub
-		Publicorprivateinsurance insurance=insurancerep.findById(id).orElse(null);
+		Publicorprivateinsurance insurance=insurancerep.findById(id).orElseThrow(()->
+				new DataNotFoundException("insurance with id " + id + " not found") );
 		return insurance;
 	}
 
@@ -41,7 +43,8 @@ public class PublicprivateinsuranceserviceImplement implements Publicprivateinsu
 	@Override
 	public Publicorprivateinsurance ubdateinsurance(Publicorprivateinsurance insurance, String id) {
 		// TODO Auto-generated method stub
-		insurance=insurancerep.findById(id).orElse(null);
+		insurance=insurancerep.findById(id).orElseThrow(()->
+				new DataNotFoundException("insurance with id " + id + " not found") );
 		insurance.setPublic_or_private_insurance_Code(insurance.getPublic_or_private_insurance_Code());
 		return insurance;
 	}

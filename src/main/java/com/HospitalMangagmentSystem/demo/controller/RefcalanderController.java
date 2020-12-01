@@ -1,17 +1,20 @@
 package com.HospitalMangagmentSystem.demo.controller;
 
+import java.net.URI;
 import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.HospitalMangagmentSystem.demo.Service.RefcalandarService;
 import com.HospitalMangagmentSystem.demo.domain.Refcalendar;
@@ -31,9 +34,15 @@ public class RefcalanderController {
 		}
 	@PostMapping("/refcalendar")
 	@Transactional
-	public void createcalenar(@RequestBody Refcalendar refcal) 
+	public ResponseEntity<Object> createcalenar(@RequestBody Refcalendar refcal) 
 	{
-		this.calanderservice.createcalendar(refcal);
+		Refcalendar calsave =this.calanderservice.createcalendar(refcal);
+		
+		URI location = ServletUriComponentsBuilder
+	            .fromCurrentRequest()
+	            .path("/{id}")
+	            .buildAndExpand(calsave.getDay_Date_Time()).toUri();
+		return ResponseEntity.created(location).build();
 	}
 	
 	@DeleteMapping("/refcalendar")

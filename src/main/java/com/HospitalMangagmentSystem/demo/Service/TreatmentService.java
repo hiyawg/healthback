@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.HospitalMangagmentSystem.demo.Dto.Treatmentdto;
 import com.HospitalMangagmentSystem.demo.domain.Treatments;
 
 @Service
@@ -12,10 +13,10 @@ public interface TreatmentService {
 	   
 	Treatments getonetreatment(int id);
 	   
-	Treatments createtreatment(Treatments treat);
+	Treatments createtreatment(Treatmentdto treat);
 	   
 	   void deletetreatment(int id);
 	   
-	   Treatments ubdatetreatment(Treatments treat , int id);
+	   Treatments ubdatetreatment(Treatmentdto treat , int id);
 
 }

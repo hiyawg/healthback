@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.HospitalMangagmentSystem.demo.Dto.HelpscoreDto;
 import com.HospitalMangagmentSystem.demo.domain.Helpscore;
 
 @Service
@@ -12,11 +13,11 @@ public interface HelpscoreService {
 	   
 	Helpscore getonehelpscore(int id);
 	   
-	Helpscore createhelpscore(Helpscore help);
+	Helpscore createhelpscore(HelpscoreDto help);
 	   
 	   void deletehelpscore(int id);
 	   
-	   Helpscore ubdatehelpscore(Helpscore help , int id);
+	   Helpscore ubdatehelpscore(HelpscoreDto help , int id);
 }
 
 

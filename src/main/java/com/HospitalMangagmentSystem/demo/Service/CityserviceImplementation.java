@@ -2,9 +2,11 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.HospitalMangagmentSystem.demo.Dto.CityDto;
 import com.HospitalMangagmentSystem.demo.domain.Cites;
 import com.HospitalMangagmentSystem.demo.repository.CityRepository;
 @Component
@@ -21,16 +23,17 @@ public class CityserviceImplementation implements CityService {
 	@Override
 	public Cites getonecity(int id) {
 		// TODO Auto-generated method stub
-		Cites cc=citrep.findById(id).orElse(null);
+		Cites cc=citrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("city with id " + id + " not found") );
 		return cc;
 	}
 
 	@Override
-	public Cites createcity(Cites cit) {
+	public Cites createcity(CityDto cit) {
 		// TODO Auto-generated method stub
-		cit.setCiy_Code(cit.getCiy_Code());
-		cit.setCity_Name(cit.getCity_Name());
-		return citrep.save(cit);
+		Cites cc = new Cites ()	;
+		cc.setCity_Name(cit.getCityname());
+		return citrep.save(cc);
 	}
 
 	@Override
@@ -40,12 +43,13 @@ public class CityserviceImplementation implements CityService {
 	}
 
 	@Override
-	public Cites ubdatecity(Cites cit, int id) {
+	public Cites ubdatecity(CityDto citd, int id) {
 		// TODO Auto-generated method stub
-		cit=citrep.findById(id).orElse(null);
-		cit.setCiy_Code(cit.getCiy_Code());
-		cit.setCity_Name(cit.getCity_Name());
-		return cit;
+		Cites cit =citrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("city with id " + id + " not found") );
+		
+		cit.setCity_Name(citd.getCityname());
+		return this.citrep.save(cit);
 	}
 
 }

@@ -15,14 +15,16 @@ import org.hibernate.annotations.GenericGenerator;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerator;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Table(name="cities")
-
-public class Cites {
+//@JsonIgnoreProperties("adres")
+public class Cites extends AuditModel {
     @Id
 	@Column(name="`City-Code`")
     @GeneratedValue
@@ -31,8 +33,8 @@ public class Cites {
 	private String City_Name;
 	
 	@OneToMany(mappedBy="city", cascade = CascadeType.ALL)
+	//@JsonManagedReference
 	@JsonIgnore
-	//@JsonBackReference
       private Set<Address> adres;
 
 	

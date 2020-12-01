@@ -1,7 +1,7 @@
 package com.HospitalMangagmentSystem.demo.Dto;
 
 public class Treatmentdto {
-	private int treatmentid;
+
 
     private char medicationorsugery;
 
@@ -9,9 +9,15 @@ public class Treatmentdto {
 
     private String otherdetails;
 
-	public int getTreatmentid() {
-		return treatmentid;
-	}
+    private String medicationname;
+
+	private String medicatiodescription;
+	
+	private String surgeryname;
+
+	private String surgerydescription;
+	
+
 
 	
 
@@ -31,6 +37,33 @@ public class Treatmentdto {
 	public String getOtherdetails() {
 		return otherdetails;
 	}
+
+
+	public String getMedicationname() {
+		return medicationname;
+	}
+
+
+	public String getMedicatiodescription() {
+		return medicatiodescription;
+	}
+
+
+	public String getSurgeryname() {
+		return surgeryname;
+	}
+
+
+	public String getSurgerydescription() {
+		return surgerydescription;
+	}
+
+
+	
+
+
+
+	
 
     
 

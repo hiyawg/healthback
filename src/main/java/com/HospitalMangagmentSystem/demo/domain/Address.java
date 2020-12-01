@@ -6,6 +6,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
@@ -21,12 +22,12 @@ import java.util.Set;
 @Entity
 @Table(name="address")
 @NamedQuery(name="Address.findAll", query="SELECT a FROM Address a")
-public class Address implements Serializable {
+public class Address extends AuditModel{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name="address_id")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue//(strategy=GenerationType.IDENTITY)
 	private int address_id;
 
 	
@@ -35,24 +36,31 @@ public class Address implements Serializable {
 	
 	
 	//bi-directional Many-to-one association to Country
-	@ManyToOne(fetch=FetchType.LAZY)
-	 @JoinColumn(name="country_Code")
-//	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	 @JoinColumn(name="country_Code" )
 
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	 //@JsonIgnore
 	  private Countries countries;
 	
 	//bi-directional Many-to-one association to Country
 		@ManyToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
 		 @JoinColumn(name="City_Code")
-	//@JsonIgnore
+		//@JsonBackReference
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+		//@JsonIgnore
 		 private Cites city;
 		
-		@ManyToOne
+		@ManyToOne(fetch=FetchType.LAZY,  cascade = CascadeType.ALL)
 		 @JoinColumn(name="doctorid")
-		@JsonBackReference
+		@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+		// @JsonBackReference
+		//@JsonIgnore
 		private Doctor doctor;
 		
 		@OneToMany(mappedBy="address", cascade = CascadeType.ALL)
+		 //@JsonIgnore
+		@JsonManagedReference
 		private Set<Patients> patient;
 		
 		

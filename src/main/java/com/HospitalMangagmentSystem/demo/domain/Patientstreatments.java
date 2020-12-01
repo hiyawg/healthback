@@ -5,7 +5,9 @@ import java.io.Serializable;
 import javax.annotation.Generated;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -16,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table(name="patients_treatments")
 @NamedQuery(name="PatientsTreatment.findAll", query="SELECT p FROM Patientstreatments  p")
-public class Patientstreatments implements Serializable {
+public class Patientstreatments extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,32 +28,41 @@ public class Patientstreatments implements Serializable {
 	private String other_Details;
 
 	//bi-directional many-to-one association to HelpScore
-	@ManyToOne
+	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Help_Score")
-      private Helpscore helpScore;
+	//@JsonIgnore
+	//@JsonBackReference
+	private Helpscore helpScore;
 
 	//bi-directional many-to-one association to Patient
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Patient_id")
 	//@JsonIgnore
+	//@JsonBackReference
+
 	private Patients patient;
 
 	//bi-directional many-to-one association to SideEffectScore
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Side_Effect_Score")
-	@JsonIgnore
+	//@JsonBackReference
+	//@JsonIgnore
+
 	private Sideeffectscores sideEffectScore;
 
 	//bi-directional many-to-one association to RefCalendar
-	@ManyToOne( cascade = CascadeType.ALL)
+	@ManyToOne( fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="Treatment_Day_Date_Time")
-	 @JsonIgnore
+	//@JsonIgnore
+	//@JsonBackReference
+
 	private Refcalendar refCalendar;
 
 	//bi-directional many-to-one association to Treatment
 	@ManyToOne( cascade = CascadeType.ALL)
 	@JoinColumn(name="Treatment_id")
-	 @JsonIgnore
+	//@JsonIgnore
+	//@JsonBackReference
 	private Treatments treatment;
 
 	public Patientstreatments() {

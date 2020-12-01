@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,8 @@ public class RefsurgeryImpementation implements RefsurgeryService{
 	@Override
 	public Refsurgery getonesurgery(int id) {
 		// TODO Auto-generated method stub
-		Refsurgery surgery=surgeryrep.findById(id).orElse(null);
+		Refsurgery surgery=surgeryrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("suregery with id " + id + " not found") );
 		return surgery;
 	}
 
@@ -43,7 +45,8 @@ public class RefsurgeryImpementation implements RefsurgeryService{
 	@Override
 	public Refsurgery ubdatesurgery(Refsurgery surgery, int id) {
 		// TODO Auto-generated method stub
-		surgery=surgeryrep.findById(id).orElse(null);
+		surgery=surgeryrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("suregery with id " + id + " not found") );
 		surgery.setSurgery_Name(surgery.getSurgery_Name());
 		surgery.setSurgery_Description(surgery.getSurgery_Description());
 		return surgery;

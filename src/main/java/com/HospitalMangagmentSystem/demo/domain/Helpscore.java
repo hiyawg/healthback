@@ -6,7 +6,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /**
@@ -16,14 +18,15 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="help_scores")
 @NamedQuery(name ="HelpScore.findAll", query="SELECT h FROM Helpscore h")
-public class Helpscore implements Serializable {
+public class Helpscore extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int help_Score;
 	
 	@OneToMany(mappedBy="helpScore",  cascade = CascadeType.ALL)
-	 @JsonIgnore
+	//@JsonManagedReference
+	@JsonIgnore
 	private Set<Patientstreatments> Patients_Treatments;
 
 	

@@ -6,10 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.HospitalMangagmentSystem.demo.Dto.AddressDto;
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import com.HospitalMangagmentSystem.demo.domain.Address;
+import com.HospitalMangagmentSystem.demo.domain.Cites;
+import com.HospitalMangagmentSystem.demo.domain.Countries;
 import com.HospitalMangagmentSystem.demo.domain.Doctor;
 import com.HospitalMangagmentSystem.demo.repository.AddressRepository;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @Component
+@JsonDeserialize 
 public class AddressserviceImplementationn implements AddresService{
       @Autowired
       AddressRepository addrep;
@@ -25,7 +30,8 @@ public class AddressserviceImplementationn implements AddresService{
 	@Override
 	public Address getoneAddreess(int id) {
 		// TODO Auto-generated method stub
-		Address aa=addrep.findById(id).orElse(null);
+		Address aa=addrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("Address with id " + id + " not found") );
 		    
 		return aa;
 	}
@@ -39,12 +45,19 @@ public class AddressserviceImplementationn implements AddresService{
 		
 	Doctor dd = new Doctor();
 		
-		//dd.setDoctor_ID(dd.getDoctor_ID());
-		dd.setDoctor_Details(dd.getDoctor_Details());
+		
+		dd.setDoctor_Details(addto.getDoctordetails());
 		
 	     add.setDoctor(dd);
 		
-		
+	Countries cou = new Countries();
+	       cou.setCountry_Name(addto.getCountryname());
+	       add.setCountries(cou);
+	       
+	       Cites cc = new Cites();
+	       cc.setCity_Name(addto.getCityname());
+	       add.setCity(cc);
+	       
 		return addrep.save(add);
 	}
 
@@ -55,11 +68,13 @@ public class AddressserviceImplementationn implements AddresService{
 	}
 
 	@Override
-	public Address ubdateAddress(Address add, int id) {
+	public Address ubdateAddress(AddressDto addto, int id) {
 		// TODO Auto-generated method stub
-		add=addrep.findById(id).orElse(null);
-		add.setAddress_detail(add.getAddress_detail());
-		return add;
+		Address add = new Address();
+		add=addrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("Address with id " + id + " not found") );
+		add.setAddress_detail(addto.getaddressdetail());
+		return this.addrep.save(add);
 	}
 
 }

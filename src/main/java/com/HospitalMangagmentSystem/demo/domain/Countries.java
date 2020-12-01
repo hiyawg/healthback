@@ -5,6 +5,8 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
 import java.util.Set;
@@ -17,7 +19,8 @@ import java.util.Set;
 @Entity
 @Table(name="countries")
 @NamedQuery(name="Country.findAll", query="SELECT c FROM Countries c")
-public class Countries implements Serializable {
+@JsonIgnoreProperties("addresses")
+public class Countries extends AuditModel{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -30,7 +33,8 @@ public class Countries implements Serializable {
 
 	//bi-directional one-to-many association to Address
 	@OneToMany(mappedBy="countries", cascade = CascadeType.ALL)
-	//@JsonBackReference
+	@JsonManagedReference
+	//@JsonIgnore
 	private Set<Address> addresses;
 
 	public Countries() {

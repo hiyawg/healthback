@@ -1,11 +1,72 @@
 package com.HospitalMangagmentSystem.demo.Dto;
 
-public class PatientDto {
+import java.util.Date;
 
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class PatientDto {
 	
-	private int dateofbirth;
+	@Temporal(TemporalType.TIMESTAMP)
+	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
+	private Date dateofbirth;
+	
 	private String otherdetails;
-	public int getDateofbirth() {
+	
+	private String addressdetail;
+	
+	private String publicorprivateinsurancecode;
+	
+	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
+	private Date daydatetime;
+
+	private int daynumber;
+	
+	private String dieasecode;
+
+	private String diseasedescription;
+
+	private String diseasename;
+
+
+	public String getAddressdetail() {
+		return addressdetail;
+	}
+	
+	
+	public String getPublicorprivateinsurancecode() {
+		return publicorprivateinsurancecode;
+	}
+
+
+	public Date getDaydatetime() {
+		return daydatetime;
+	}
+
+
+	public int getDaynumber() {
+		return daynumber;
+	}
+
+
+	public String getDieasecode() {
+		return dieasecode;
+	}
+
+
+	public String getDiseasedescription() {
+		return diseasedescription;
+	}
+
+
+	public String getDiseasename() {
+		return diseasename;
+	}
+
+
+	public Date getDateofbirth() {
 		return dateofbirth;
 	}
 	public String getOtherdetails() {

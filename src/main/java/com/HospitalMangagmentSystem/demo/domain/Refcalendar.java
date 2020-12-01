@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.Date;
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.Set;
 @Entity
 @Table(name="ref_calander")
 @NamedQuery(name="Ref_Calander.findAll", query="SELECT r FROM Refcalendar r")
-public class Refcalendar implements Serializable {
+public class Refcalendar extends AuditModel{
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -36,16 +37,18 @@ public class Refcalendar implements Serializable {
 	@OneToMany(mappedBy="refCalender", cascade = CascadeType.ALL)
 	@JsonIgnore
 	//@JsonBackReference
+	
 	private Set<DoctorsVisit> doctorsVisits;
 
 	//bi-directional many-to-one association to Patient
-	@OneToMany(mappedBy="Date_Acquired_Disease",  cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="day_Date_Time",  cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Patients> patients;
 
 	//bi-directional many-to-one association to PatientsTreatment
 	@OneToMany(mappedBy="refCalendar",  cascade = CascadeType.ALL)
 	@JsonIgnore
+	//@JsonManagedReference
 	private Set<Patientstreatments> patientsTreatments;
 
 	public Refcalendar() {

@@ -6,7 +6,9 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -17,13 +19,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="side_effect_scores")
 @NamedQuery(name="SideEffectScore.findAll", query="SELECT s FROM Sideeffectscores s")
-public class Sideeffectscores implements Serializable {
+public class Sideeffectscores extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	private int Side_Effect_Score;
 	@OneToMany(mappedBy="sideEffectScore",  cascade = CascadeType.ALL)
-	 @JsonIgnore
+@JsonIgnore
+	//@JsonManagedReference
 	private Set<Patientstreatments> Patients_Treatments;
 
 	

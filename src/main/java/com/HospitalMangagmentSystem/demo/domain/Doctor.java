@@ -4,7 +4,9 @@ package com.HospitalMangagmentSystem.demo.domain;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.HashSet;
@@ -19,25 +21,26 @@ import java.util.Set;
 @Entity
 @Table(name="doctors")
 @NamedQuery(name="Doctor.findAll", query="SELECT d FROM Doctor d")
-public class Doctor implements Serializable {
+public class Doctor extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue
 	private int doctor_ID;
-
+     
+	
 	private String doctor_Details;
 
 	//bi-directional many-to-one association to Address
 	@OneToMany(mappedBy="doctor",  cascade = CascadeType.ALL)
-	//@JoinColumn(name="Work_Address_ID")
-	//@JsonManagedReference
+   // @JsonManagedReference 
 	@JsonIgnore
 	private Set<Address> address;
 
 	//bi-directional many-to-one association to DoctorsVisit
 	@OneToMany(mappedBy="doctor",  cascade = CascadeType.ALL)
-	
+	//@JsonManagedReference
+	@JsonIgnore
 	private Set<DoctorsVisit> doctorsVisits;
 
 	public Doctor() {

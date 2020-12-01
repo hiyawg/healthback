@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,8 @@ public class RefmedicationserviceImplemntation implements RefmedicationService{
 	@Override
 	public Refmedication getonemedication(int id) {
 		// TODO Auto-g menerated method stub
-		Refmedication medication=medicationrep.findById(id).orElse(null);
+		Refmedication medication=medicationrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("medication type with id " + id + " not found") );
 		return medication;
 	}
 
@@ -42,7 +44,8 @@ public class RefmedicationserviceImplemntation implements RefmedicationService{
 	@Override
 	public Refmedication ubdatemedication(Refmedication medication, int id) {
 		// TODO Auto-generated method stub
-		medication=medicationrep.findById(id).orElse(null);
+		medication=medicationrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("medication type with id " + id + " not found") );
 		medication.setMedicationname(medication.getMedicationname());
 		medication.setMedicatiodescription(medication.getMedicatiodescription());
 		return medication;

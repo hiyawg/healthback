@@ -20,5 +20,5 @@ public interface AddresService {
    
    void deleteAddress(int id);
    
-   Address ubdateAddress(Address add , int id);
+   Address ubdateAddress(AddressDto addto , int id);
 }

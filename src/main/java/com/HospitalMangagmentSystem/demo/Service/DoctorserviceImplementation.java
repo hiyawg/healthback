@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,32 +28,26 @@ public class DoctorserviceImplementation implements DoctorService {
 	@Override
 	public Doctor getonedoctor(int id) {
 		// TODO Auto-generated method stub
-		Doctor doc =docrep.findById(id).orElse(null);
+		Doctor doc =docrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("doctor with id " + id + " not found") );
 		
 		return doc;
 	}
-	@Override
-	public Doctor adddoctor(DoctorDto doc) {
-		
-		Doctor doct = createdoctor(doc);
-		
-		return this.docrep.save(doct);
-	}
 
-	
+	@Override
 	@Transactional
 	public Doctor createdoctor(DoctorDto doc) {
 		// TODO Auto-generated method stub
 		
-		Address add = new Address();
-		add.setAddress_detail(doc.getAddressdetail());
+		/*Address add = new Address();
+		add.setAddress_detail(doc.getAddressdetail());*/
 		
 		Doctor dd = new Doctor();
 		
 		dd.setDoctor_Details(doc.getDoctordetails());
 		
-		dd.addAdreess(add);
-		return dd;
+		//dd.addAdreess(add);
+		return this.docrep.save(dd);
 		
 	}
 
@@ -66,7 +61,8 @@ public class DoctorserviceImplementation implements DoctorService {
 	@Override
 	public Doctor ubdatedoctor(Doctor doc, int id) {
 		// TODO Auto-generated method stub
-		doc=docrep.findById(id).orElse(null);
+		doc=docrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("doctor with id " + id + " not found") );
 		doc.setDoctor_Details(doc.getDoctor_Details());
 		return docrep.save(doc);
 	}

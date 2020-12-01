@@ -16,12 +16,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="RefSurgery")
 @NamedQuery(name="RefSurgery.findAll", query="SELECT r FROM Refsurgery r")
-public class Refsurgery implements Serializable {
+public class Refsurgery extends AuditModel {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-   // @JsonIgnore
-
+   //@JsonIgnore
+   @GeneratedValue
 	private int Surgery_Code;
 
 	private String Surgery_Name;

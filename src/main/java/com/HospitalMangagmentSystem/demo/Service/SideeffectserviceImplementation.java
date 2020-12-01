@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.Service;
 
 import java.util.List;
 
+import com.HospitalMangagmentSystem.demo.Exception.DataNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,8 @@ public class SideeffectserviceImplementation implements SideeffectscoreService{
 	@Override
 	public Sideeffectscores getonesideeffect(int id) {
 		// TODO Auto-generated method stub
-		Sideeffectscores side=siderepo.findById(id).orElse(null);
+		Sideeffectscores side=siderepo.findById(id).orElseThrow(()->
+				new DataNotFoundException("side effect with id " + id + " not found") );
 		return side;
 	}
 
@@ -41,7 +43,8 @@ public class SideeffectserviceImplementation implements SideeffectscoreService{
 	@Override
 	public Sideeffectscores ubdatesideeffect(Sideeffectscores side, int id) {
 		// TODO Auto-generated method stub
-		side=siderepo.findById(id).orElse(null);
+		side=siderepo.findById(id).orElseThrow(()->
+				new DataNotFoundException("side effect with id " + id + " not found") );
 		side.setSide_Effect_Score(side.getSide_Effect_Score());
 		return side;
 	}

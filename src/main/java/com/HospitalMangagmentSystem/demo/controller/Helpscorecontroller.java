@@ -1,17 +1,20 @@
 package com.HospitalMangagmentSystem.demo.controller;
 
-	import java.util.List;
+	import java.net.URI;
+import java.util.List;
 
 	import javax.transaction.Transactional;
 
 	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 	import org.springframework.web.bind.annotation.GetMapping;
 	import org.springframework.web.bind.annotation.PathVariable;
 	import org.springframework.web.bind.annotation.PostMapping;
 	import org.springframework.web.bind.annotation.PutMapping;
 	import org.springframework.web.bind.annotation.RequestBody;
 	import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.HospitalMangagmentSystem.demo.Dto.HelpscoreDto;
 import com.HospitalMangagmentSystem.demo.Service.HelpscoreService;
@@ -42,16 +45,20 @@ import com.HospitalMangagmentSystem.demo.repository.HelpscoreRepository;
 		 }
 		 @PostMapping("/HelpScore")
 	     @Transactional
-	     public void createHelpScore(@RequestBody Helpscore help){
-
-			
-	            this.helpservice.createhelpscore(help);
+	     public ResponseEntity<Object> createHelpScore(@RequestBody HelpscoreDto help){
+			 Helpscore helpsave= this.helpservice.createhelpscore(help);
+			 URI location = ServletUriComponentsBuilder
+		                .fromCurrentRequest()
+		                .path("/{id}")
+		                .buildAndExpand(helpsave.getHelp_Score()).toUri();
+				return ResponseEntity.created(location).build();
+				
 	        
 	     }
 
 		 	 
 		 @PutMapping("/HelpScore/{id}")
-	     public Helpscore updateHelpScore(@PathVariable int id, @RequestBody Helpscore help ){ 
+	     public Helpscore updateHelpScore(@PathVariable int id, @RequestBody HelpscoreDto help ){ 
 			 
 
 	        return this.helpservice.ubdatehelpscore(help, id);
