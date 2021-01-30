@@ -39,28 +39,20 @@ public class PatientserviceImplementation implements PatientService {
 	public Patients createpatient(PatientDto patidto) {
 		// TODO Auto-generated method stub
 		Patients pati  = new Patients();
-		pati.setDateOfbirth(patidto.getDateofbirth());		
-		pati.setOther_Details(patidto.getOtherdetails());
+
+		pati.setFirst(patidto.getFirst());
+		pati.setLast(patidto.getLast());
+		pati.getAge();
+		pati.getEmail();
+		pati.getGender();
+		pati.getMobile();
+
 		
 		Address aa = new Address();
-		 aa.setAddress_detail(patidto.getAddressdetail());
+		 aa.setAddress_detail(patidto.getAddress_detail());
 		      pati.setAddress(aa);
 		      
-		 Publicorprivateinsurance insurance = new Publicorprivateinsurance();
-		       insurance.setPublic_or_private_insurance_Code(patidto.getPublicorprivateinsurancecode());
-		        pati.setPublic_or_Private_Insurance_Code(insurance);
-		     
-		        Refcalendar cal = new Refcalendar();
-		          cal.setDay_Date_Time(patidto.getDaydatetime());
-		          cal.setDay_Number(patidto.getDaynumber());		          
-		          pati.setDay_Date_Time(cal);
-		          
-		          Refdiseases dise = new Refdiseases();
-		           dise.setDiease_Code(patidto.getDieasecode());
-		           dise.setDisease_Name(patidto.getDiseasename());
-		           dise.setDisease_Description(patidto.getDiseasedescription());
-		           
-		           pati.setDisease(dise);
+
 		           
 		       return patrep.save(pati);
 		
@@ -72,10 +64,10 @@ public class PatientserviceImplementation implements PatientService {
 		patrep.deleteById(id);
 	}
 
-	@Override
+	/*@Override
 	public Patients ubdatepatient(PatientDto patidto, int id) {
 		// TODO Auto-generated method stub
-		Patients pati=patrep.findById(id).orElseThrow(()->
+		/*Patients pati=patrep.findById(id).orElseThrow(()->
 				new DataNotFoundException("patient with id " + id + " not found") );
 		pati.setDateOfbirth(patidto.getDateofbirth());
 		pati.setOther_Details(patidto.getOtherdetails());
@@ -102,6 +94,7 @@ public class PatientserviceImplementation implements PatientService {
 		
 		
 		return patrep.save(pati);
-	}
+
+	}*/
 
 }

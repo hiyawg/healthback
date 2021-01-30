@@ -34,18 +34,22 @@ public class Patients extends AuditModel {
 	@Id
 	@GeneratedValue
 	private int Patient_ID;
-	private String patientname;
 
-
+	private String first;
+	private String last;
+	private String gender;
+	private String mobile;
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
-    private Date DateOfbirth;
+	private Date dob;
+	private int age;
+	private String email;
+	private String addresses;
+
+
+
 	
-	private String Other_Details;
-	
-	public String getOther_Details() {
-		return Other_Details;
-	}
+
 
 	public Address getAddress() {
 		return address;
@@ -91,13 +95,7 @@ public class Patients extends AuditModel {
 	 //@JsonManagedReference
 	private Set<Patientstreatments> patienttreatment;
 
-	public String getPatientname() {
-		return patientname;
-	}
 
-	public void setPatientname(String patientname) {
-		this.patientname = patientname;
-	}
 
 	public int getPatient_ID() {
 		return Patient_ID;
@@ -108,13 +106,7 @@ public class Patients extends AuditModel {
 	}
 
 
-	public Date getDateOfbirth() {
-		return DateOfbirth;
-	}
 
-	public void setDateOfbirth(Date dateOfbirth) {
-		DateOfbirth = dateOfbirth;
-	}
 
 	public Refdiseases getDisease() {
 		return Disease;
@@ -126,9 +118,7 @@ public class Patients extends AuditModel {
 
 	
 
-	public void setOther_Details(String other_Details) {
-		Other_Details = other_Details;
-	}
+
 
 	public void setPatienttreatment(Set<Patientstreatments> patienttreatment) {
 		this.patienttreatment = patienttreatment;
@@ -166,6 +156,68 @@ public class Patients extends AuditModel {
 		this.address = address;
 	}
 
-	
-	
+
+	public String getFirst() {
+		return first;
+	}
+
+	public void setFirst(String first) {
+		this.first = first;
+	}
+
+	public String getLast() {
+		return last;
+	}
+
+	public void setLast(String last) {
+		this.last = last;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public Date getDob() {
+		return dob;
+	}
+
+	public void setDob(Date dob) {
+		this.dob = dob;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(String addresses) {
+		this.addresses = addresses;
+	}
 }

@@ -73,13 +73,13 @@ import com.HospitalMangagmentSystem.demo.repository.Refdiseasesrepository;
 			
 		}
 		
-		@PutMapping("/Patient/{id}")
+		/*@PutMapping("/Patient/{id}")
 		@Transactional
 		public Patients updatepatient(@RequestBody PatientDto pati , @PathVariable int id) {
 			return this.patiservice.ubdatepatient(pati, id);
 			
 			
-		}
+		}*/
 		
 		
 		

@@ -75,8 +75,8 @@ public class PaymentserviceImplementation implements PaymentService{
            docvisit.setDoctor(dd);
 
         Patients pat = new Patients();
-         pat.setDateOfbirth(paydto.getDateOfbirth());
-         pat.setPatientname(paydto.getPatientname());
+         //pat.getDob(paydto.getDateOfbirth());
+         //pat.setPatientname(paydto.getPatientname());
 
          docvisit.setPatient(pat);
 

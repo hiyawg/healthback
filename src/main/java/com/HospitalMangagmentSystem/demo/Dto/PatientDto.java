@@ -8,75 +8,52 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class PatientDto {
-	
+
+	private String first;
+	private String last;
+	private String gender;
+	private String mobile;
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
-	private Date dateofbirth;
-	private String patientname;
+	private Date dob;
+	private int age;
+	private String email;
+	private String addresses;
 
-	private String otherdetails;
-	
-	private String addressdetail;
-	
-	private String publicorprivateinsurancecode;
-	
-	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
-	private Date daydatetime;
-
-	private int daynumber;
-	
-	private String dieasecode;
-
-	private String diseasedescription;
-
-	private String diseasename;
-
-
-	public String getAddressdetail() {
-		return addressdetail;
+	private String address_detail;
+	public String getFirst() {
+		return first;
 	}
 
-	public String getPatientname() {
-		return patientname;
+	public String getLast() {
+		return last;
 	}
 
-	public String getPublicorprivateinsurancecode() {
-		return publicorprivateinsurancecode;
+	public String getGender() {
+		return gender;
 	}
 
-
-	public Date getDaydatetime() {
-		return daydatetime;
+	public String getMobile() {
+		return mobile;
 	}
 
-
-	public int getDaynumber() {
-		return daynumber;
+	public Date getDob() {
+		return dob;
 	}
 
-
-	public String getDieasecode() {
-		return dieasecode;
+	public int getAge() {
+		return age;
 	}
 
-
-	public String getDiseasedescription() {
-		return diseasedescription;
+	public String getEmail() {
+		return email;
 	}
 
-
-	public String getDiseasename() {
-		return diseasename;
+	public String getAddresses() {
+		return addresses;
 	}
 
-
-	public Date getDateofbirth() {
-		return dateofbirth;
+	public String getAddress_detail() {
+		return address_detail;
 	}
-	public String getOtherdetails() {
-		return otherdetails;
-	}
-	
-	
-	
 }

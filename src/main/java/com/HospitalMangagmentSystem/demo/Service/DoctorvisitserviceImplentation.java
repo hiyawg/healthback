@@ -44,8 +44,8 @@ public class DoctorvisitserviceImplentation implements DoctorvisitService {
               dv.setDoctor(dd);
          
               Patients pp = new Patients();
-              pp.setDateOfbirth(docvd.getDateofbirth());
-              pp.setOther_Details(docvd.getOtherdetails());
+             // pp.setDateOfbirth(docvd.getDateofbirth());
+              //pp.setOther_Details(docvd.getOtherdetails());
               
               dv.setPatient(pp);
               

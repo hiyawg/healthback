@@ -44,7 +44,7 @@ public class PatienttreatmentserviceImplementation implements PatienttreatmentSe
 		
 		 
 		Patients pp = new Patients();
-				pp.setDateOfbirth(ptd.getDateOfbirth());
+				//pp.setDateOfbirth(ptd.getDateOfbirth());
 		   pt.setPatient(pp);
 		   
 		   Treatments treat = new Treatments();
@@ -84,7 +84,7 @@ public class PatienttreatmentserviceImplementation implements PatienttreatmentSe
 		pt.setOther_Details(ptd.getOtherdetails());
 
 		Patients pp = new Patients();
-		pp.setDateOfbirth(ptd.getDateOfbirth());
+		//pp.setDateOfbirth(ptd.getDateOfbirth());
 		pt.setPatient(pp);
 
 		Treatments treat = new Treatments();
