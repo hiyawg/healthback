@@ -9,17 +9,34 @@ public class DoctorvisitDto {
 	private String visitdetails;
 
 	private String doctordetails;
-	
+	private String name ;
+
+	private String department;
+
+
 	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
 	 private Date dateofbirth;
-	 
+
+	private String patientname;
+
 		private String otherdetails;
 		@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
 		private Date daydatetime;
 
 		private int daynumber;
-		
-		
+
+	public String getName() {
+		return name;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public String getPatientname() {
+		return patientname;
+	}
+
 	public String getVisitdetails() {
 		return visitdetails;
 	}

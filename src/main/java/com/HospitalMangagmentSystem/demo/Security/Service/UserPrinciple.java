@@ -12,19 +12,39 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class UserPrinciple implements UserDetails {
+
     private static final long serialVersionUID = 1L;
     private int id;
-    private String name;
+    private String first;
+    private String last;
+    private String dob;
+    private String mobile;
+    private String designation;
+    private String address;
+    private String education;
+    private String gender;
+    private String department;
+
     private String username;
     private String email;
     @JsonIgnore
     private String password;
     private Collection<? extends GrantedAuthority> authorities;
-    public UserPrinciple(int id, String name,
+    public UserPrinciple(int id,String first,String last,String dob,String mobile,String designation,
+                         String address,String education,String gender,
+                         String department,
                          String username, String email, String password,
                          Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
-        this.name = name;
+        this.first = first;
+        this.last = last;
+        this.dob = dob;
+        this.mobile = mobile;
+        this.designation = designation;
+        this.address = address;
+        this.education = education;
+        this.department = department;
+        this.gender = gender;
         this.username = username;
         this.email = email;
         this.password = password;
@@ -36,19 +56,56 @@ public class UserPrinciple implements UserDetails {
         ).collect(Collectors.toList());
         return new UserPrinciple(
                 user.getId(),
-                user.getName(),
+                user.getFirst(),
+
+                user.getLast(),
+
+
+
+                user.getDob(),
+                user.getMobile(),
+                user.getDesignation(),
+                user.getAddress(),
+                 user.getEducation(),
+                user.getGender(),
+                user.getDepartment(),
+
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
+
                 authorities
         );
     }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
     public int getId() {
         return id;
     }
-    public String getName() {
-        return name;
-    }
+
     public String getEmail() {
         return email;
     }
@@ -88,5 +145,25 @@ public class UserPrinciple implements UserDetails {
 
         UserPrinciple	user = (UserPrinciple) o;
         return Objects.equals(id, user.id);
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getEducation() {
+        return education;
     }
 }

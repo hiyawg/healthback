@@ -57,7 +57,8 @@ public class AddressserviceImplementationn implements AddresService{
 	       Cites cc = new Cites();
 	       cc.setCity_Name(addto.getCityname());
 	       add.setCity(cc);
-	       
+
+
 		return addrep.save(add);
 	}
 

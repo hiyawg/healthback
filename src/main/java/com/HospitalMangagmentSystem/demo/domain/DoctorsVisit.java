@@ -1,6 +1,7 @@
 package com.HospitalMangagmentSystem.demo.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -29,7 +30,7 @@ public class DoctorsVisit extends AuditModel {
 	//bi-directional many-to-one association to RefCalender
 	@ManyToOne(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name="Day_Date_Time")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	@JsonIgnoreProperties({"hiber nateLazyInitializer", "handler"})
 	//@JsonManagedReference
 	private Refcalendar refCalender;
 
@@ -46,11 +47,25 @@ public class DoctorsVisit extends AuditModel {
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
 	private Patients patient;
 
+    @OneToMany(mappedBy="doctors_visits", cascade = CascadeType.ALL)
+	@JsonIgnore
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+	private Set<Payment> payments;
+
+
 	public DoctorsVisit() {
 	}
 
 	public int getDoctor_Visits_ID() {
 		return this.doctor_Visits_ID;
+	}
+
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
 	}
 
 	public void setDoctor_Visits_ID(int doctor_Visits_ID) {

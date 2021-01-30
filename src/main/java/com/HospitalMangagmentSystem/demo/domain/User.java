@@ -40,13 +40,26 @@ import org.hibernate.annotations.NaturalId;
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int id;
 
-        @NotBlank
-        @Size(min = 3, max = 50)
-        private String name;
+
 
         @NotBlank
         @Size(min = 3, max = 50)
         private String username;
+
+        private String address;
+        //private String conformPassword;
+        private String department;
+        private String designation;
+        private String dob;
+        private String education;
+        @NotBlank
+        @Size(min = 6, max = 100)
+        private String password;
+        private String first;
+        private String gender;
+        private String last;
+        private String mobile;
+
 
         @NaturalId
         @NotBlank
@@ -54,9 +67,7 @@ import org.hibernate.annotations.NaturalId;
         @Email
         private String email;
 
-        @NotBlank
-        @Size(min = 6, max = 100)
-        private String password;
+
 
         @ManyToMany(fetch = FetchType.LAZY)
         @JoinTable(name = "user_roles",
@@ -67,11 +78,23 @@ import org.hibernate.annotations.NaturalId;
         public User() {
         }
 
-        public User(String name, String username, String email, String password) {
-            this.name = name;
+        public User( String username, String email,
+                    String first,String last,String dob,String mobile,String designation,String address,
+                     String education,String gender,String department,String password
+                    ) {
+
             this.username = username;
             this.email = email;
             this.password = password;
+            this.first = first;
+            this.last = last;
+            this.dob = dob;
+            this.mobile = mobile;
+            this.designation= designation;
+            this.address = address;
+            this.education = education;
+            this.gender = gender;
+            this.department = department;
         }
 
         public int getId() {
@@ -90,13 +113,7 @@ import org.hibernate.annotations.NaturalId;
             this.username = username;
         }
 
-        public String getName() {
-            return name;
-        }
 
-        public void setName(String name) {
-            this.name = name;
-        }
 
         public String getEmail() {
             return email;
@@ -120,6 +137,82 @@ import org.hibernate.annotations.NaturalId;
 
         public void setRoles(Set<Role> roles) {
             this.roles = roles;
+        }
+
+        public String getAddress() {
+            return address;
+        }
+
+        public void setAddress(String address) {
+            this.address = address;
+        }
+
+
+
+
+
+        public String getDepartment() {
+            return department;
+        }
+
+        public void setDepartment(String department) {
+            this.department = department;
+        }
+
+        public String getDesignation() {
+            return designation;
+        }
+
+        public void setDesignation(String designation) {
+            this.designation = designation;
+        }
+
+        public String getDob() {
+            return dob;
+        }
+
+        public void setDob(String dob) {
+            this.dob = dob;
+        }
+
+        public String getEducation() {
+            return education;
+        }
+
+        public void setEducation(String education) {
+            this.education = education;
+        }
+
+        public String getFirst() {
+            return first;
+        }
+
+        public void setFirst(String first) {
+            this.first = first;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public String getLast() {
+            return last;
+        }
+
+        public void setLast(String last) {
+            this.last = last;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
         }
     }
 

@@ -2,9 +2,16 @@ package com.HospitalMangagmentSystem.demo.message.request;
 import java.util.Set;
         import javax.validation.constraints.*;
 public class SignUpForm {
-    @NotBlank
-    @Size(min = 3, max = 50)
-    private String name;
+    private String address;
+    private String conformPassword;
+    private String department;
+    private String designation;
+    private String dob;
+    private String education;
+    private String first;
+    private String gender;
+    private String last;
+    private String mobile;
     @NotBlank
     @Size(min = 3, max = 50)
     private String username;
@@ -18,12 +25,7 @@ public class SignUpForm {
     @NotBlank
     @Size(min = 6, max = 40)
     private String password;
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
+
     public String getUsername() {
         return username;
     }
@@ -49,5 +51,45 @@ public class SignUpForm {
 
     public void setRole(Set<String> role) {
         this.role = role;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getConformPassword() {
+        return conformPassword;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getEducation() {
+        return education;
+    }
+
+    public String getFirst() {
+        return first;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getLast() {
+        return last;
+    }
+
+    public String getMobile() {
+        return mobile;
     }
 }

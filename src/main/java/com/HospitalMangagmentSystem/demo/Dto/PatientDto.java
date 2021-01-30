@@ -12,7 +12,8 @@ public class PatientDto {
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
 	private Date dateofbirth;
-	
+	private String patientname;
+
 	private String otherdetails;
 	
 	private String addressdetail;
@@ -34,8 +35,11 @@ public class PatientDto {
 	public String getAddressdetail() {
 		return addressdetail;
 	}
-	
-	
+
+	public String getPatientname() {
+		return patientname;
+	}
+
 	public String getPublicorprivateinsurancecode() {
 		return publicorprivateinsurancecode;
 	}

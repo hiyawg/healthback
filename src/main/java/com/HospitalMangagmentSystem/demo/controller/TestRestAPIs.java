@@ -26,4 +26,18 @@ public class TestRestAPIs {
     public String adminAccess() {
         return ">>>	Admin	Contents";
     }
+
+        @GetMapping("/api/test/doctor")
+        @PreAuthorize("hasRole('doctor')	or	hasRole('ADMIN')")
+        @ResponseBody
+        public String doctorAccess() {
+            return ">>>	doctor	Contents!";
+        }
+    @GetMapping("/api/test/patient")
+    @PreAuthorize("hasRole('patient')	or	hasRole('ADMIN')")
+    @ResponseBody
+    public String patientAccess() {
+        return ">>> patient	Contents!";
+    }
+
 }

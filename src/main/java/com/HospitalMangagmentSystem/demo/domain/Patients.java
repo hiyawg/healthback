@@ -34,7 +34,9 @@ public class Patients extends AuditModel {
 	@Id
 	@GeneratedValue
 	private int Patient_ID;
-	
+	private String patientname;
+
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
     private Date DateOfbirth;
@@ -89,6 +91,14 @@ public class Patients extends AuditModel {
 	 //@JsonManagedReference
 	private Set<Patientstreatments> patienttreatment;
 
+	public String getPatientname() {
+		return patientname;
+	}
+
+	public void setPatientname(String patientname) {
+		this.patientname = patientname;
+	}
+
 	public int getPatient_ID() {
 		return Patient_ID;
 	}
@@ -97,9 +107,7 @@ public class Patients extends AuditModel {
 		Patient_ID = patient_ID;
 	}
 
-	
 
-	
 	public Date getDateOfbirth() {
 		return DateOfbirth;
 	}

@@ -45,7 +45,8 @@ public class DoctorserviceImplementation implements DoctorService {
 		Doctor dd = new Doctor();
 		
 		dd.setDoctor_Details(doc.getDoctordetails());
-		
+		dd.setName(doc.getName());
+		dd.setDepartment(doc.getDepartment());
 		//dd.addAdreess(add);
 		return this.docrep.save(dd);
 		

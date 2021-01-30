@@ -27,9 +27,15 @@ public class Doctor extends AuditModel {
 	@Id
 	@GeneratedValue
 	private int doctor_ID;
-     
-	
 	private String doctor_Details;
+	private String name;
+     
+
+	private String department;
+
+
+
+
 
 	//bi-directional many-to-one association to Address
 	@OneToMany(mappedBy="doctor",  cascade = CascadeType.ALL)
@@ -42,6 +48,8 @@ public class Doctor extends AuditModel {
 	//@JsonManagedReference
 	@JsonIgnore
 	private Set<DoctorsVisit> doctorsVisits;
+
+
 
 	public Doctor() {
 	}
@@ -62,7 +70,22 @@ public class Doctor extends AuditModel {
 		this.doctor_Details = doctor_Details;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public Set<Address> getAddress() {
 		return address;
 	}
@@ -102,5 +125,6 @@ public class Doctor extends AuditModel {
 
 		return doctorsVisit;
 	}
+
 
 }

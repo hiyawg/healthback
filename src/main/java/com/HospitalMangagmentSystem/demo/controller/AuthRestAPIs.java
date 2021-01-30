@@ -36,7 +36,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
-public class AuthRestAPIs {
+public class
+AuthRestAPIs {
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired
@@ -70,8 +71,10 @@ public class AuthRestAPIs {
                     HttpStatus.BAD_REQUEST);
         }
         //	Creating	user's	account
-        User user = new User(signUpRequest.getName(), signUpRequest.getUsername(),
-                signUpRequest.getEmail(),
+        User user = new User(signUpRequest.getUsername(),
+                signUpRequest.getEmail(),signUpRequest.getFirst(),signUpRequest.getLast(),signUpRequest.getDob(),
+                signUpRequest.getMobile(),signUpRequest.getDesignation(),signUpRequest.getAddress(),
+                signUpRequest.getEducation(),signUpRequest.getGender(), signUpRequest.getDepartment(),
                 encoder.encode(signUpRequest.getPassword()));
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -82,11 +85,18 @@ public class AuthRestAPIs {
                             .orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
                     roles.add(adminRole);
                     break;
-                case "pm":
-                    Role pmRole = roleRepository.findByName(Rolename.ROLE_PM)
-                            .orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
-                    roles.add(pmRole);
+
+                case "doctor":
+                    Role doctorRole = roleRepository.findByName(Rolename.ROLE_DOCTOR).
+                            orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
+                    roles.add(doctorRole);
                     break;
+
+                case "patient":
+                    Role patientRole = roleRepository.findByName(Rolename.ROLE_PATIENT).orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
+                    roles.add(patientRole);
+                    break;
+
                 default:
                     Role userRole = roleRepository.findByName(Rolename.ROLE_USER)
                             .orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
