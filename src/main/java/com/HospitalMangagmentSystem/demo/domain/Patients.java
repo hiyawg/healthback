@@ -41,7 +41,8 @@ public class Patients extends AuditModel {
 	private String gender;
 	private String mobile;
 	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS")
+	//@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
 	private Date dob;
 	private int age;
 	private String email;

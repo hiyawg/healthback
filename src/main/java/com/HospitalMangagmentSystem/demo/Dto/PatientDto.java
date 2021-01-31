@@ -1,7 +1,7 @@
 package com.HospitalMangagmentSystem.demo.Dto;
 
-import java.util.Date;
 
+import java.sql.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -13,14 +13,14 @@ public class PatientDto {
 	private String last;
 	private String gender;
 	private String mobile;
-	@Temporal(TemporalType.TIMESTAMP)
-	@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
+	@JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS")
+	//@JsonFormat(pattern = "MM/dd/yyyy", timezone = "America/New_York")
 	private Date dob;
 	private int age;
 	private String email;
 	private String addresses;
 
-	private String address_detail;
+	private String address;
 	public String getFirst() {
 		return first;
 	}
@@ -54,6 +54,6 @@ public class PatientDto {
 	}
 
 	public String getAddress_detail() {
-		return address_detail;
+		return address;
 	}
 }
