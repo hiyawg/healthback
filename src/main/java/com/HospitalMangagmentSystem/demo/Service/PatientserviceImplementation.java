@@ -14,6 +14,7 @@ import com.HospitalMangagmentSystem.demo.domain.Refcalendar;
 import com.HospitalMangagmentSystem.demo.domain.Refdiseases;
 import com.HospitalMangagmentSystem.demo.repository.PatientRepository;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import javax.transaction.Transactional;
 
 @Component
 @JsonDeserialize
@@ -34,27 +35,30 @@ public class PatientserviceImplementation implements PatientService {
 		  
 		return pp;
 	}
+	@Transactional
+	private Patients createPatients(PatientDto patientDto) {
+		Patients patient = new Patients();
 
+		patient.setFirst(patientDto.getFirst());
+		patient.setLast(patientDto.getLast());
+		patient.setGender(patientDto.getGender());
+		patient.setDob(patientDto.getDob());
+		patient.setEmail(patientDto.getEmail());
+		patient.setMobile(patientDto.getMobile());
+
+
+		// address
+		Address address = new Address();
+		address.setAddress_detail(patientDto.getAddress_detail());
+		patient.addPatientAddress(address);
+
+		return patient;
+	}
 	@Override
-	public Patients createpatient(PatientDto patidto) {
-		// TODO Auto-generated method stub
-		Patients pati  = new Patients();
+	public Patients createpatient(PatientDto patientDto) {
+		Patients patient = createPatients(patientDto);
+		return patrep.save(patient);
 
-		pati.setFirst(patidto.getFirst());
-		pati.setLast(patidto.getLast());
-		pati.getAge();
-		pati.getEmail();
-		pati.getGender();
-		pati.getMobile();
-
-		
-		Address aa = new Address();
-		 aa.setAddress_detail(patidto.getAddress_detail());
-		      pati.setAddress(aa);
-		      
-
-		           
-		       return patrep.save(pati);
 		
 	}
 

@@ -2,6 +2,7 @@ package com.HospitalMangagmentSystem.demo.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -51,9 +52,7 @@ public class Patients extends AuditModel {
 	
 
 
-	public Address getAddress() {
-		return address;
-	}
+
 	@OneToMany(mappedBy="patient",cascade = CascadeType.ALL)
 	@JsonIgnore
 	public Set<Patientstreatments> getPatienttreatment() {
@@ -84,11 +83,11 @@ public class Patients extends AuditModel {
 	@JsonIgnore
 	private Publicorprivateinsurance Public_or_Private_Insurance_Code;
 
-	@ManyToOne( cascade = CascadeType.ALL)
-	@JoinColumn(name="addres_id")
-	@JsonIgnore
-	//@JsonBackReference
-	private Address address;
+	// bi-directional many-to-one association to PatientAddress
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "patient")
+	@JsonManagedReference
+	private Set<Address> address;
+
 	
 	@OneToMany(mappedBy="patient",  cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -152,8 +151,22 @@ public class Patients extends AuditModel {
 		Public_or_Private_Insurance_Code = public_or_Private_Insurance_Code;
 	}
 
-	public void setAddress(Address address) {
-		this.address = address;
+	public void setAddresses(String addresses) {
+		this.addresses = addresses;
+	}
+
+	public Set<Address> getAddress() {
+		return address;
+	}
+
+	public Address addPatientAddress(Address patientAddress) {
+		if (address == null) {
+			address = new HashSet<Address>();
+		}
+		getAddress().add(patientAddress);
+		patientAddress.setPatient(this);
+
+		return patientAddress;
 	}
 
 
@@ -217,7 +230,7 @@ public class Patients extends AuditModel {
 		return addresses;
 	}
 
-	public void setAddresses(String addresses) {
-		this.addresses = addresses;
-	}
+
+
+
 }

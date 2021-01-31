@@ -57,11 +57,11 @@ public class Address extends AuditModel{
 		// @JsonBackReference
 		//@JsonIgnore
 		private Doctor doctor;
-		
-		@OneToMany(mappedBy="address", cascade = CascadeType.ALL)
-		 //@JsonIgnore
-		@JsonManagedReference
-		private Set<Patients> patient;
+
+	   @ManyToOne
+	   @JoinColumn(name="PATIENT_ID")
+	   @JsonBackReference
+		private Patients patient;
 		
 		
 	public int getAddress_id() {
@@ -106,16 +106,13 @@ public class Address extends AuditModel{
 	}
 
 
-	
-
-	public Set<Patients> getPatient() {
+	public Patients getPatient() {
 		return patient;
 	}
 
-	public void setPatient(Set<Patients> patient) {
+	public void setPatient(Patients patient) {
 		this.patient = patient;
 	}
-	
 }
 
 
