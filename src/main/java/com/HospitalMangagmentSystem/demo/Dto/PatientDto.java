@@ -53,7 +53,8 @@ public class PatientDto {
 		return addresses;
 	}
 
-	public String getAddress_detail() {
+
+	public String getAddress() {
 		return address;
 	}
 }

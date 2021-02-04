@@ -20,5 +20,5 @@ public interface PatientService {
 	   
 	   void deletepatient(int id);
 	   
-	   //Patients ubdatepatient(PatientDto pati , int id);
+	   Patients ubdatepatient(PatientDto pati , int id);
 }
