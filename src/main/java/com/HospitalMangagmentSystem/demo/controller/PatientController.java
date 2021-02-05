@@ -61,7 +61,7 @@ import com.HospitalMangagmentSystem.demo.repository.Refdiseasesrepository;
 		
 		@DeleteMapping("/Patient/{id}")
 		@Transactional
-		public void deletepatient(@RequestBody PatientDto patientdto , @PathVariable int id) {
+		public void deletepatient( @PathVariable int id) {
 			this.patiservice.deletepatient(id);
 			
 			

@@ -65,7 +65,9 @@ public class PatientserviceImplementation implements PatientService {
 	@Override
 	public void deletepatient(int id) {
 		// TODO Auto-generated method stub
-		patrep.deleteById(id);
+		Patients patient = patrep.findById(id).orElseThrow(()->
+				new DataNotFoundException("patient with id " + id + " not found") );
+		patrep.delete(patient);
 	}
 
 	@Override
