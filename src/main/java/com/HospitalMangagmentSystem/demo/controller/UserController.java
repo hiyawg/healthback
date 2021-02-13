@@ -4,6 +4,7 @@ package com.HospitalMangagmentSystem.demo.controller;
 import com.HospitalMangagmentSystem.demo.Service.UserService;
 import com.HospitalMangagmentSystem.demo.domain.Patients;
 import com.HospitalMangagmentSystem.demo.domain.User;
+import com.HospitalMangagmentSystem.demo.message.request.SignUpForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,6 +38,14 @@ public class UserController {
     @Transactional
     public void delteuser( @PathVariable int id) {
         this.userservice.delteuser(id);
+
+
+    }
+
+    @PutMapping("/Update/{id}")
+    @Transactional
+    public void updateuser(@PathVariable int id, @RequestBody SignUpForm singupform) {
+        this.userservice.updateauser(id,singupform);
 
 
     }
