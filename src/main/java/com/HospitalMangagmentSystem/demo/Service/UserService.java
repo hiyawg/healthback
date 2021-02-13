@@ -4,6 +4,7 @@ import com.HospitalMangagmentSystem.demo.Dto.Treatmentdto;
 import com.HospitalMangagmentSystem.demo.Dto.UserDto;
 import com.HospitalMangagmentSystem.demo.domain.Treatments;
 import com.HospitalMangagmentSystem.demo.domain.User;
+import com.HospitalMangagmentSystem.demo.message.request.SignUpForm;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +15,11 @@ public interface UserService {
 
     User getoneuser(int id);
 
-   List<User> getbyrole();
+     List<User> getbyrole();
 
-    void delteuser(int id);
+     User updateauser(int id, SignUpForm user);
+
+     void delteuser(int id);
 
 
 

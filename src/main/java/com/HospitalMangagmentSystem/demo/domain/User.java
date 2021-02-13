@@ -61,13 +61,16 @@ import org.hibernate.annotations.NaturalId;
         private String mobile;
 
 
-        @NaturalId
-        @NotBlank
+
+        @NaturalId(mutable=true)
         @Size(max = 50)
         @Email
         private String email;
 
-
+        @OneToOne(fetch = FetchType.LAZY,
+                cascade =  CascadeType.ALL,
+                mappedBy = "user")
+        private ImageAttachment image;
 
         @ManyToMany(fetch = FetchType.LAZY)
         @JoinTable(name = "user_roles",
@@ -213,6 +216,14 @@ import org.hibernate.annotations.NaturalId;
 
         public void setMobile(String mobile) {
             this.mobile = mobile;
+        }
+
+        public ImageAttachment getImage() {
+            return image;
+        }
+
+        public void setImage(ImageAttachment image) {
+            this.image = image;
         }
     }
 
