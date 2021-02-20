@@ -41,6 +41,7 @@ public class UserController {
 
 
     }
+
     @PutMapping("/Update/{id}")
     @Transactional
     public void updateuser(@PathVariable int id, @RequestBody SignUpForm singupform) {
@@ -48,4 +49,5 @@ public class UserController {
 
 
     }
+
 }
