@@ -96,6 +96,10 @@ AuthRestAPIs {
                     Role patientRole = roleRepository.findByName(Rolename.ROLE_PATIENT).orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
                     roles.add(patientRole);
                     break;
+                case "receptionist":
+                    Role receptionistRole = roleRepository.findByName(Rolename.ROLE_RECEPTIONIST).orElseThrow(() -> new RuntimeException("Fail!	->	Cause:	User	Role	not	find."));
+                    roles.add(receptionistRole);
+                    break;
 
                 default:
                     Role userRole = roleRepository.findByName(Rolename.ROLE_USER)
