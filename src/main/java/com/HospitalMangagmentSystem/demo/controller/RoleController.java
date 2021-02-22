@@ -24,11 +24,9 @@ public class RoleController {
     @Transactional
     public void createrole() {
         Role role = new Role();
-        role.setName(Rolename.ROLE_USER);
+        role.setName(Rolename.ROLE_RECEPTIONIST);
         roalrepository.save(role);
-        Role role2 = new Role();
-        role2.setName(Rolename.ROLE_DOCTOR);
-        roalrepository.save(role2);
+
 
 
 
