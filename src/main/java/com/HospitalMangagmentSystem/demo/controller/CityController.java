@@ -32,7 +32,10 @@ import com.HospitalMangagmentSystem.demo.domain.Cites;
 
 		        return this.citservice.getallcity();
 		 }
-		 
+		@GetMapping("/aman")
+		public String index() {
+			return "welcome to my Care WebSite";
+		}
 		 
 		 
 		 @GetMapping("/City/{id}")
